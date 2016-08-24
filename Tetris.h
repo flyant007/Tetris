@@ -4,7 +4,10 @@
  * 实现程序中所有类的定义
  *
  ***************************************************/
+#include "Common.h"
+#include <GL/glut.h>
 
+class Figure;
 //游戏类
 class Game
 {
@@ -46,6 +49,19 @@ private:
 
     //游戏状态，True表示游戏运行，False表示游戏失败
     bool status;
+};
+
+class Block
+{
+public:
+    //画出方块本身
+    void Draw() const;
+
+    //形状旋转时，方块随之移动到指定的位置，参数为该方块所处形状的中心位置
+    bool Rotate(const int figureX, const int figureY);
+private:
+    int posX, posY;
+
 };
 
 #endif // TETRIS_H
