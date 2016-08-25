@@ -5,7 +5,8 @@ CONFIG -= qt
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    Game.cpp
+    Game.cpp \
+    Block.cpp
 
 HEADERS += \
     Common.h \
