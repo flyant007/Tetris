@@ -6,7 +6,8 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     Game.cpp \
-    Block.cpp
+    Block.cpp \
+    Figure.cpp
 
 HEADERS += \
     Common.h \

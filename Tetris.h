@@ -6,6 +6,7 @@
  ***************************************************/
 #include "Common.h"
 #include <GL/glut.h>
+#include <string>
 
 class Block
 {
@@ -28,7 +29,7 @@ public:
     bool Translate(const int offsetX, const int offsetY);
 
     //判断方块是否可以跟着形状旋转到指定位置
-    //参数未该方块所属的形状的位置posX
+    //参数为该方块所属的形状的位置
     bool CanRotate(const int figureX, const int figureY) const;
 
     //判断方块是否可以移动到指定的偏移
@@ -110,7 +111,7 @@ public:
     virtual ~Game();
 
     //显示界面
-    void Draw() const;
+    void Draw();
 
     //更新游戏界面状态
     void Update(const Figure &figure);
@@ -133,6 +134,16 @@ public:
     //设置游戏运行状态
     void SetStatus(const bool newstatus) {status = newstatus;}
 
+    //设置游戏刷新实时间，控制游戏速度
+    void SetSpeed(const int value) {speed = value;}
+
+    //获得游戏刷新实时间，控制游戏速度
+    int GetSpeed() {return speed;}
+
+    //显示得分
+    std::string ShowScore();
+
+
 private:
     //界面行数和列数
     int num_row, num_col;
@@ -142,6 +153,14 @@ private:
 
     //游戏状态，True表示游戏运行，False表示游戏失败
     bool status;
+
+    //设置游戏刷新实时间，控制游戏速度
+    int speed;
+
+    //计分
+    int score;
+
+
 };
 
 

@@ -14,8 +14,6 @@ Figure tetrisFigure(rand() % NUM_FIGURE);
 //创建游戏类对象
 Game tetrisGame;
 
-//默认初级，刷新时间0.5s
-
 //-----------------OpenGL使用的回调函数---------------
 
 //键盘输入处理函数
@@ -54,15 +52,6 @@ void HandleKeyPress(unsigned char key, int x, int y)
         case 'w':
             tetrisFigure.Rotate();
             glutPostRedisplay();
-            break;
-        case 'p'://初级
-            tetrisGame.SetSpeed(1000);
-            break;
-        case 'm'://中级
-            tetrisGame.SetSpeed(500);
-            break;
-        case 'h'://高级
-            tetrisGame.SetSpeed(100);
             break;
         default:
             break;
@@ -103,14 +92,13 @@ void Display()
 //更新函数
 void Update(int value)
 {
-    value = tetrisGame.GetSpeed();
     //如果游戏没有结束
     if(tetrisGame.GetStatus())
     {
         //向下移动形状
         int moveSuccess = tetrisFigure.Translate(0, -1);
 
-        //如果移动失败，表示当前形状已经无法下移，更新游戏状态并创建新的形状
+        //如果移动失败，表示当前形状已经无法下一，更新游戏状态并创建新的形状
         if(!moveSuccess)
         {
             tetrisGame.Update(tetrisFigure);
@@ -122,7 +110,7 @@ void Update(int value)
     glutPostRedisplay();
 
     //设置每0.5s刷新一次
-    glutTimerFunc(value, Update, 0);
+    glutTimerFunc(500, Update, 0);
 }
 
 int main(int argc, char *argv[])
@@ -154,8 +142,7 @@ int main(int argc, char *argv[])
     glutKeyboardFunc(HandleKeyPress);
 
     //设置Timer和更新函数
-    //该函数只是在第一次启动时运行一次
-    glutTimerFunc(1000, Update, 0);
+    glutTimerFunc(500, Update, 0);
 
     //进入主循环
     glutMainLoop();
